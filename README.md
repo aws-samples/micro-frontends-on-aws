@@ -1,6 +1,6 @@
-# Micro frontends on AWS
+# Micro Frontends on AWS
 
-This is a sample project to show how to configure React/Typescript applications for the [`Micro frontends pattern`](https://microfrontends.com/) and deploy it to AWS with [`Webpack Module Federation`](https://webpack.js.org/concepts/module-federation/).
+This is a sample project to show how to configure React/Typescript applications for the [`Micro Frontends pattern`](https://microfrontends.com/) and deploy it to AWS with [`Webpack Module Federation`](https://webpack.js.org/concepts/module-federation/).
 This project consists of four pieces, a `CDK` app, a `host` app and two remotes apps `remote-1` and `remote-2`.
 
 ## Application Preview
@@ -22,7 +22,7 @@ This project consists of four pieces, a `CDK` app, a `host` app and two remotes 
 
 ### Application configuration
 
-Host and remote apps for Micro frontends are built using ReactJS/Typescript with `Webpack 5 Module Federation`.
+Host and remote apps for Micro Frontends are built using ReactJS/Typescript with `Webpack 5 Module Federation`.
 All configurations are in the `webpack.config.js` in each application and already all set.
 If you want to add or change your remote app name or components, you can update values under the `ModuleFederationPlugin` key.
 
