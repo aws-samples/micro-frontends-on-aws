@@ -1,0 +1,16 @@
+{
+    "name": "root",
+    "private": true,
+    "workspaces": [
+        "host",
+        "remote-1",
+        "remote-2"
+    ],
+    "scripts": {
+        "start": "lerna run --parallel start",
+        "build": "lerna run build"
+    },
+    "devDependencies": {
+        "lerna": "^6.1.0"
+    }
+}

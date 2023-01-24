@@ -1,0 +1,36 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.main {
+    display: flex;
+    gap: 3rem;
+}
+
+.remote {
+    flex: 1;
+    background-color: orange;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+button {
+    border: 1px solid white;
+    border-radius: 1rem;
+    color: white;
+    background-color: orange;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover {
+    transition: 0.4s;
+    background-color: white;
+    color: orange;
+}
