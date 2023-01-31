@@ -4,12 +4,12 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const { dependencies } = require('./package.json');
 require('dotenv').config({ path: './.env' });
 
-module.exports = (env, argv) => {
-    const isProduction = argv.mode === 'production';
+module.exports = () => {
+    const isProduction = process.env.NODE_ENV || 'development';
 
     return {
         entry: './src/index.ts',
-        mode: process.env.NODE_ENV || 'development',
+        mode: isProduction,
         devServer: {
             port: 3000,
         },
@@ -30,12 +30,14 @@ module.exports = (env, argv) => {
             new ModuleFederationPlugin({
                 name: 'Host',
                 remotes: {
-                    Remote1: isProduction
-                        ? process.env.REMOTE_1
-                        : 'Remote1@http://localhost:4000/moduleEntry.js',
-                    Remote2: isProduction
-                        ? process.env.REMOTE_2
-                        : 'Remote2@http://localhost:4001/moduleEntry.js',
+                    Remote1:
+                        isProduction === 'production'
+                            ? process.env.REMOTE_1
+                            : 'Remote1@http://localhost:4000/moduleEntry.js',
+                    Remote2:
+                        isProduction === 'production'
+                            ? process.env.REMOTE_2
+                            : 'Remote2@http://localhost:4001/moduleEntry.js',
                 },
                 shared: {
                     ...dependencies,
