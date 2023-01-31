@@ -1,5 +1,6 @@
 // remote/webpack.config.js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const { ModuleFederationPlugin } = require('webpack').container;
 const path = require('path');
 const { dependencies } = require('./package.json');
@@ -23,6 +24,9 @@ module.exports = {
         ],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env),
+        }),
         new ModuleFederationPlugin({
             name: 'Remote2',
             filename: 'moduleEntry.js',
