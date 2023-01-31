@@ -7,7 +7,6 @@ import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline';
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions';
-import { BucketAccessControl, BucketEncryption } from 'aws-cdk-lib/aws-s3';
 
 interface PipelineStackProps extends cdk.StackProps {
     appName: string;
@@ -27,7 +26,8 @@ export class PipelineStack extends cdk.Stack {
         const bucket = new s3.Bucket(this, `${appName}Bucket`, {
             bucketName: `${appName}-app`,
             removalPolicy: cdk.RemovalPolicy.DESTROY,
-            websiteIndexDocument: 'index.html',
+            enforceSSL: true,
+            versioned: true,
         });
 
         // pipeline
@@ -81,7 +81,7 @@ export class PipelineStack extends cdk.Stack {
                             actionName: 'deployToS3',
                             bucket: bucket,
                             input: buildOutput,
-                            accessControl: BucketAccessControl.PUBLIC_READ,
+                            accessControl: s3.BucketAccessControl.PUBLIC_READ,
                         }),
                     ],
                 },
@@ -93,7 +93,13 @@ export class PipelineStack extends cdk.Stack {
             this,
             `${appName}-app-dist`,
             {
-                defaultBehavior: { origin: new origins.S3Origin(bucket) },
+                defaultRootObject: 'index.html',
+                defaultBehavior: {
+                    origin: new origins.S3Origin(bucket),
+                },
+                enableLogging: true,
+                minimumProtocolVersion:
+                    cloudfront.SecurityPolicyProtocol.TLS_V1_2_2021,
             }
         );
 

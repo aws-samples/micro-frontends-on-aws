@@ -17,8 +17,8 @@ This project consists of four pieces, a `CDK` app, a `host` app and two remotes 
 -   AWS CodeCommit
 -   AWS CodeBuild
 -   AWS CodeDeploy
--   AWS S3
--   AWS CloudFront
+-   Amazon S3
+-   Amazon CloudFront
 
 ### Application configuration
 
