@@ -28,6 +28,12 @@ export class PipelineStack extends cdk.Stack {
             removalPolicy: cdk.RemovalPolicy.DESTROY,
             enforceSSL: true,
             versioned: true,
+
+            /**
+             * For sample purposes only.
+             * This setting will enable full cleanup of the demo.
+             */
+            autoDeleteObjects: true, // NOT recommended for production code
         });
 
         // pipeline

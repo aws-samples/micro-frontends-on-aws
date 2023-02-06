@@ -8,7 +8,8 @@
     ],
     "scripts": {
         "start": "lerna run --parallel start",
-        "build": "lerna run build"
+        "build": "lerna run build",
+        "clean": "rm -rf host/node_modules host/dist host/build remote-1/node_modules remote-1/dist remote-1/build remote-2/node_modules remote-2/dist remote-2/build"
     },
     "devDependencies": {
         "lerna": "^6.1.0"
