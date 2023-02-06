@@ -92,17 +92,15 @@ Lerna will start all applications (`host`, `remote-1`, and `remote-2`) in this p
 
 ## Deploying on AWS
 
-To start deploying on AWS, you should upload ReactJS applications to [`AWS CodeCommit`](https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started-cc.html) first.
-Although each `repository name` is defined in a cdk file `/cdk/bin/cdk.ts`, you can change it if you want. Please keep in mind you should sync the name with the cdk.
+Before start deploying on AWS, you have to remove `node_modules` directory of sample application first.
 
-```typescript
-const remote_1 = new PipelineStack(app, 'Remote1PipelineStack', {
-    appName: 'remote1',
-    repositoryName: 'remote-app-1', // this is a repository name of AWS CodeCommit for remote app
-});
+In the root directory, run `clean` command like below. It helps remove node_modules and some unnecessary directories to avoid errors on AWS Pipeline.
+
+```bash
+$ npm run clean
 ```
 
-Once, you upload 3 apps to AWS CodeCommit, you can run `cdk deploy` in the cdk directory.
+Then, you can run `cdk deploy` in the cdk directory.
 
 ```bash
 $ cdk deploy --all --require-approval never
