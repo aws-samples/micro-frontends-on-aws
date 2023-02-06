@@ -5,11 +5,11 @@ This project consists of four pieces, a `CDK` app, a `host` app and two remotes 
 
 ## Application Preview
 
-![ScreenShot!](/host/public/application_preview.png 'ScreenShot')
+![ScreenShot!](/preview.png 'ScreenShot')
 
 ## Architecture Overview
 
-![Architecture!](/host/public/mfe_architecture.png 'Architecture')
+![Architecture!](/diagram.png 'Architecture')
 
 ### AWS Services
 
@@ -28,7 +28,7 @@ If you want to add or change your remote app name or components, you can update 
 
 #### Host App
 
-Webpack config for Host app should be defined to use remote apps.
+Webpack config of Host app for using remote apps is already configured like below.
 
 ```js
 plugins: [
@@ -44,7 +44,8 @@ plugins: [
                 },
 ```
 
-Dynamic imports remote apps and renders them.
+To use remote components, you should define `Dynamic import` for remote apps and renders them.
+Sample applications in this project are already configured.
 
 ```typescript
 const Remote1App = React.lazy(() => import('Remote1/App'));
@@ -55,6 +56,7 @@ const Remote2Button = React.lazy(() => import('Remote2/Button'));
 
 #### Remote App
 
+To expose your component
 Defined a proper name `Remote1` in here to be imported by the Host app, and defined components could be imported.
 In this case, Remote-1 app exports `App` and `Button` component.
 
@@ -92,9 +94,7 @@ Lerna will start all applications (`host`, `remote-1`, and `remote-2`) in this p
 
 ## Deploying on AWS
 
-Before start deploying on AWS, you have to remove `node_modules` directory of sample application first.
-
-In the root directory, run `clean` command like below. It helps remove node_modules and some unnecessary directories to avoid errors on AWS Pipeline.
+If you previously ran `lerna` or `npm install` on your local before, you must first remove `node_modules` in the sample application directory. In the root directory, please run `npm run clean` command like below. It helps remove `node_modules` and some unnecessary directories to avoid errors in AWS Pipeline.
 
 ```bash
 $ npm run clean
