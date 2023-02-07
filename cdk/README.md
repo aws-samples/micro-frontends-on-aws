@@ -6,7 +6,7 @@ This is a CDK project to build pipelines for Micro frontends and deploy it to AW
 
 When you run this CDK on your local with your AWS Account, it will deploy whole architecture like below.
 
-![Architecture!](/host/public/mfe_architecture.png 'Architecture')
+![Architecture!](/diagram.png 'Architecture')
 
 ## Useful commands
 
