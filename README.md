@@ -13,16 +13,16 @@ This project consists of four pieces, a `CDK` app, a `host` app and two remotes 
 
 ### AWS Services
 
--   AWS CDK
--   AWS CodeCommit
--   AWS CodeBuild
--   AWS CodeDeploy
--   Amazon S3
--   Amazon CloudFront
+- AWS CDK
+- AWS CodeCommit
+- AWS CodeBuild
+- AWS CodeDeploy
+- Amazon S3
+- Amazon CloudFront
 
 ### Application configuration
 
-Host and remote apps for Micro Frontends are built using ReactJS/Typescript with `Webpack 5 Module Federation`.
+Host and remote apps for Micro Frontends are built using React/Typescript with `Webpack 5 Module Federation`.
 All configurations are in the `webpack.config.js` in each application and already all set.
 If you want to add or change your remote app name or components, you can update values under the `ModuleFederationPlugin` key.
 
@@ -56,9 +56,8 @@ const Remote2Button = React.lazy(() => import('Remote2/Button'));
 
 #### Remote App
 
-To expose your component
-Defined a proper name `Remote1` in here to be imported by the Host app, and defined components could be imported.
-In this case, Remote-1 app exports `App` and `Button` component.
+To expose your components in the remote app, you need to define a name and components.
+In this case, `Remote1` app exports `App` and `Button` components.
 
 ```js
 // webpack.config.js of the Remote #1 app
@@ -77,33 +76,33 @@ In this case, Remote-1 app exports `App` and `Button` component.
 This project uses `Lerna` to manage apps as a mono repo and if you have not installed it before, you need to install it globally.
 
 ```bash
-$ npm i -g lerna
+npm i -g lerna
 ```
 
 and then, run it in the root directory of this project.
 
 ```bash
-$ npm run start
+npm run start
 ```
 
 Lerna will start all applications (`host`, `remote-1`, and `remote-2`) in this project at once.
 
--   Host: http://localhost:3000
--   Remote-1: http://localhost:4000
--   Remote-2: http://localhost:4001
+- Host: http://localhost:3000
+- Remote-1: http://localhost:4000
+- Remote-2: http://localhost:4001
 
 ## Deploying on AWS
 
 If you previously ran `lerna` or `npm install` on your local before, you must first remove `node_modules` in the sample application directory. In the root directory, please run `npm run clean` command like below. It helps remove `node_modules` and some unnecessary directories to avoid errors in AWS Pipeline.
 
 ```bash
-$ npm run clean
+npm run clean
 ```
 
 Then, you can run `cdk deploy` in the cdk directory.
 
 ```bash
-$ cdk deploy --all --require-approval never
+cdk deploy --all --require-approval never
 ```
 
 Finally, you would see a CloudFront URL for the Host app in your terminal like below when CDK deploys all.
@@ -111,6 +110,14 @@ Finally, you would see a CloudFront URL for the Host app in your terminal like b
 ```bash
 Outputs:
 HostPipelineStack.DistributionDomainName = hostappsample.cloudfront.net
+```
+
+## Destroying Services
+
+If you want to destroy the services, you can easily destroy them all with the command below.
+
+```bash
+cdk destroy --all
 ```
 
 ## License
